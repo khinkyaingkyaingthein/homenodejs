@@ -55,4 +55,23 @@ router.get('/:id',function(req,res){
   })
 })
 
+router.patch('/:id',function(req,res){
+  var update = {};
+  for (var upd of req.body){
+    update[upd.proName] = upd.proValue;
+  }
+  User.findByIdAndUpdate(req.params.id,{$set:update},function(err,rtn){
+    if(err){
+      res.status(500).json({
+        message:"Internal Server Error",
+        error:err
+      })
+    }else {
+      res.status(200).json({
+        message:"User Update Account",
+      })
+    }
+  })
+})
+
 module.exports = router;
