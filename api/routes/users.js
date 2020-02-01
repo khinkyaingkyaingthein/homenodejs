@@ -59,6 +59,7 @@ router.patch('/:id',function(req,res){
   var update = {};
   for (var upd of req.body){
     update[upd.proName] = upd.proValue;
+    update[upd.proEmail] = upd.proValue;
   }
   User.findByIdAndUpdate(req.params.id,{$set:update},function(err,rtn){
     if(err){
