@@ -39,4 +39,20 @@ router.post('/add',function(req,res){
   })
 })
 
+router.get('/:id',function(req,res){
+  User.findById(req.params.id,function(err,rtn){
+    if(err){
+      res.status(500).json({
+        message:"Internal Server Error",
+        error:err
+      })
+    }else{
+      res.status(200).json({
+        message:"User Detail !!!",
+        user:rtn
+      })
+    }
+  })
+})
+
 module.exports = router;
