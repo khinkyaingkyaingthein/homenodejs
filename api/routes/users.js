@@ -75,4 +75,19 @@ router.patch('/:id',function(req,res){
   })
 })
 
+router.delete('/:id',function(req,res){
+  User.findByIdAndRemove(req.params.id,function(err,rtn){
+    if(err){
+      res.status(500).json({
+        message:"Internal Server Error",
+        error:err
+      })
+    }else{
+      res.status(200).json({
+        message:"User Account Deleted"
+      })
+    }
+  })
+})
+
 module.exports = router;
