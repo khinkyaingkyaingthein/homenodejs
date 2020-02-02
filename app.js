@@ -11,7 +11,7 @@ var usersRouter = require('./routes/user');
 var postsRouter = require('./routes/post');
 var apiUsersRouter = require('./api/routes/users');
 var apiPostsRouter = require('./api/routes/post');
-// var apiAdminRouter = require('./api/routes/mainuser');
+var apiAdminRouter = require('./api/routes/mainuser');
 
 var app = express();
 
@@ -41,7 +41,7 @@ app.use(function(req,res,next){
 })
 
 app.use('/', indexRouter);
-// app.use('/api',apiAdminRouter);
+app.use('/api',apiAdminRouter);
 app.use('/api/users',apiUsersRouter);
 app.use('/api/posts',apiPostsRouter);
 app.use(function(req,res,next){

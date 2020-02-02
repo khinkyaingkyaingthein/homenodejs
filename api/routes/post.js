@@ -5,7 +5,7 @@ var Post = require('../../model/post');
 var bcrypt = require('bcryptjs');
 
 router.get('/list',function(req,res){
-  Post.find(function(err,rtn){
+  Post.find({}).populate('author').exec(function(err,rtn){
     if(err){
       res.status(500).json({
         message:"Internal Server Error",
@@ -38,5 +38,7 @@ router.post('/add',function(req,res){
     }
   })
 })
+
+
 
 module.exports = router;

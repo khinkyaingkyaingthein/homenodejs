@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Admin = require('../../model/Admin');
+var Admin = require('../../model/admin');
 // var jwt = require('jsonwebtoken');
 
 router.post('/signup',function(req,res){
