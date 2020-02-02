@@ -40,7 +40,7 @@ router.post('/add',function(req,res){
 })
 
 router.get('/:id',function(req,res){
-  Post.findById(req.params.id).populate('author').exec(req.params.id,function(err,rtn){
+  Post.findById(req.params.id).populate('author').exec(function(err,rtn){
     if(err){
       res.status(500).json({
         message:"Internal Server Error",
@@ -48,7 +48,7 @@ router.get('/:id',function(req,res){
       })
     }else{
       res.status(200).json({
-        message:"User Detail !!!",
+        message:"Post Detail !!!",
         post:rtn
       })
     }
