@@ -19,4 +19,24 @@ router.get('/list',function(req,res){
   })
 })
 
+router.post('/add',function(req,res){
+  var post = new Post();
+  post.title = req.body.title;
+  post.content = req.body.content;
+  post.author = req.body.author;
+  post.save(function(err,rtn){
+    if(err){
+      res.status(500).json({
+        message:"Internal Server Error",
+        error:err
+      })
+    }else{
+      res.status(201).json({
+        message:"User Account Created !!!",
+        post:rtn
+      })
+    }
+  })
+})
+
 module.exports = router;
