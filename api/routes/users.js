@@ -3,8 +3,9 @@ var router = express.Router();
 var User = require('../../model/user');
 var Post = require('../../model/post');
 var bcrypt = require('bcryptjs');
+var checkauth = require('../routes/middleware/check-auth');
 
-router.get('/list',function(req,res){
+router.get('/list',checkauth,function(req,res){
   User.find(function(err,rtn){
     if(err){
       res.status(500).json({
@@ -19,7 +20,7 @@ router.get('/list',function(req,res){
   })
 })
 
-router.post('/add',function(req,res){
+router.post('/add',checkauth,function(req,res){
   var user = new User();
   user.name = req.body.name;
   user.email = req.body.email;
@@ -39,7 +40,7 @@ router.post('/add',function(req,res){
   })
 })
 
-router.get('/:id',function(req,res){
+router.get('/:id',checkauth,function(req,res){
   User.findById(req.params.id,function(err,rtn){
     if(err){
       res.status(500).json({
@@ -55,7 +56,7 @@ router.get('/:id',function(req,res){
   })
 })
 
-router.patch('/:id',function(req,res){
+router.patch('/:id',checkauth,function(req,res){
   var update = {};
   for (var upd of req.body){
     update[upd.proName] = upd.proValue;
@@ -75,7 +76,7 @@ router.patch('/:id',function(req,res){
   })
 })
 
-router.delete('/:id',function(req,res){
+router.delete('/:id',checkauth,function(req,res){
   User.findByIdAndRemove(req.params.id,function(err,rtn){
     if(err){
       res.status(500).json({

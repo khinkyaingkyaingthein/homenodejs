@@ -31,7 +31,7 @@ app.use(session({
 }))
 
 mongoose.connect('mongodb://127.0.0.1/testdb');
-mongoose.connect('mongodb+srv://KhinCherry:kkkt12345@test1-ybgi4.mongodb.net/test?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://khincherry:kkkt12345@homework-lnsoo.mongodb.net/test?retryWrites=true&w=majority');
 var db = mongoose.connection;
 db.on('error',console.error.bind(console,'mongoDB connection error'));
 
